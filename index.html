@@ -42,14 +42,20 @@
             background-color: #48c5c0;
         }
 
-        .drone-animation img {
-            animation: pulse 2s infinite;
+        .drone-path {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 40px auto 0;
+            animation: moveDrone 8s linear infinite;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        @keyframes moveDrone {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(50px, -50px) rotate(5deg); }
+            50% { transform: translate(100px, 0) rotate(-5deg); }
+            75% { transform: translate(50px, 50px) rotate(5deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
         }
 
         .goals-grid {
@@ -153,8 +159,8 @@
         <p>Комплексная защита периметра с ИИ-аналитикой</p>
         <button class="cta" onclick="openDemo()">▶️ Смотреть демо</button>
         <button class="cta" onclick="scrollToTech()">🚀 Технические характеристики</button>
-        <div class="drone-animation">
-            <img src="drone-icon.png" alt="Drone Icon" style="margin-top: 40px; width: 300px;">
+        <div class="drone-path">
+            <img src="drone-icon.png" alt="Drone Icon" style="width: 100%;">
         </div>
     </section>
 
