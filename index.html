@@ -1,188 +1,129 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GuardPilot | Автономные дроны-охранники</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Rubik&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #0A2463;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-        }
-        section {
-            padding: 60px 20px;
-        }
-        .cta {
-            background-color: #61E8E1;
-            border: none;
-            color: #000;
-            font-weight: bold;
-            padding: 10px 16px;
-            margin: 6px;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        input, textarea, button {
-            display: block;
-            width: 100%;
-            max-width: 400px;
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 6px;
-            border: none;
-        }
-        footer {
-            background: #061f3f;
-            padding: 40px 20px;
-        }
-        .lang-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 999;
-        }
-        .lang-toggle button {
-            background-color: #61E8E1;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .lang-toggle button:hover {
-            background-color: #48c5c0;
-        }
-        .lang-ru, .lang-en {
-            display: none;
-        }
-        .lang-ru.active, .lang-en.active {
-            display: block;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GuardPilot | Автономные дроны-охранники</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Rubik&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #0A2463;
+      color: #fff;
+    }
+
+    .lang-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+
+    .lang-toggle button {
+      background-color: #61E8E1;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .lang-toggle button:hover {
+      background-color: #48c5c0;
+    }
+
+    .lang-ru,
+    .lang-en {
+      display: none;
+    }
+
+    .lang-ru.active,
+    .lang-en.active {
+      display: block;
+    }
+
+    .futuristic-button {
+      margin-top: 20px;
+      padding: 14px 28px;
+      font-size: 1rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #61E8E1, #2ec8c2);
+      border: 2px solid #61E8E1;
+      color: #0A2463;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 12px #61E8E1;
+      transition: all 0.3s ease;
+    }
+
+    .futuristic-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #61E8E1;
+    }
+  </style>
 </head>
+
 <body>
-<div class="lang-toggle">
+  <!-- Переключатель языка -->
+  <div class="lang-toggle">
     <button onclick="switchLang('ru')">RU</button>
     <button onclick="switchLang('en')">EN</button>
-</div>
+  </div>
 
-<section id="hero" style="text-align: center; background-image: url('hero-background.jpg');">
+  <!-- Hero Section -->
+  <section id="hero" style="text-align: center; background-image: url('hero-background.jpg'); padding: 60px 20px;">
     <div class="lang-ru active">
-        <h1>GuardPilot: Автономные дроны-охранники 24/7</h1>
-        <p>Комплексная защита периметра с ИИ-аналитикой</p>
-        <button class="cta" onclick="alert('Демо недоступно')">▶️ Смотреть демо</button>
-        <button class="cta" onclick="document.getElementById('technology').scrollIntoView({behavior: 'smooth'});">🚀 Технические характеристики</button>
+      <h1>GuardPilot: Автономные дроны-охранники 24/7</h1>
+      <p>Комплексная защита периметра с ИИ-аналитикой</p>
+      <button class="futuristic-button" onclick="openDemoAndScroll()">🚁 Демо и характеристики</button>
     </div>
     <div class="lang-en">
-        <h1>GuardPilot: Autonomous Security Drones 24/7</h1>
-        <p>Comprehensive perimeter protection with AI analytics</p>
-        <button class="cta" onclick="alert('Demo not available')">▶️ Watch Demo</button>
-        <button class="cta" onclick="document.getElementById('technology').scrollIntoView({behavior: 'smooth'});">🚀 Tech Specs</button>
+      <h1>GuardPilot: Autonomous Security Drones 24/7</h1>
+      <p>Comprehensive perimeter protection with AI analytics</p>
+      <button class="futuristic-button" onclick="openDemoAndScroll()">🚁 Demo & Specs</button>
     </div>
-</section>
+    <div class="drone-path">
+      <img src="drone-icon.png" alt="Drone Icon">
+      <svg class="drone-svg-path">
+        <path d="M 10 150 C 80 30, 220 30, 290 150" />
+      </svg>
+    </div>
+  </section>
 
-<section id="about">
-    <div class="lang-ru active">
-        <h2>О компании</h2>
-        <p>GuardPilot специализируется на создании автономных дрон-систем безопасности для интеграции в умные дома и промышленные объекты. Наши дроны отслеживают нарушителей, маркируют зоны риска и работают в любых условиях.</p>
-    </div>
-    <div class="lang-en">
-        <h2>About</h2>
-        <p>GuardPilot specializes in developing autonomous drone security systems for smart homes and industrial sites. Our drones track intruders, mark risk zones, and operate under all conditions.</p>
-    </div>
-</section>
+  <!-- Здесь будет секция технологии -->
+  <section id="technology" style="padding: 40px; text-align: center;">
+    <h2>Технология MVP</h2>
+    <p>...</p>
+  </section>
 
-<section id="mission">
-    <div class="lang-ru active">
-        <h2>Наша цель</h2>
-        <ul>
-            <li>Превратить дроны в первую линию обороны</li>
-            <li>Снижение ложных срабатываний на 70%</li>
-            <li>Реакция на угрозу за 8.3 секунды</li>
-        </ul>
-    </div>
-    <div class="lang-en">
-        <h2>Our Mission</h2>
-        <ul>
-            <li>Turn drones into the first line of defense</li>
-            <li>Reduce false positives by 70%</li>
-            <li>Threat response time: 8.3 seconds</li>
-        </ul>
-    </div>
-</section>
-
-<section id="technology">
-    <div class="lang-ru active">
-        <h2>Технология MVP</h2>
-        <p>Сценарий работы: патрулирование → обнаружение → оповещение → возврат</p>
-    </div>
-    <div class="lang-en">
-        <h2>MVP Technology</h2>
-        <p>Workflow: patrolling → detection → alert → return</p>
-    </div>
-</section>
-
-<section id="contacts">
-    <div class="lang-ru active">
-        <h2>Контакты</h2>
-        <p>Telegram: @GuardPilot_Support</p>
-        <p>Email: security@guardpilot.com</p>
-        <p>Группа в Telegram: t.me/guardpilot_news</p>
-    </div>
-    <div class="lang-en">
-        <h2>Contacts</h2>
-        <p>Telegram: @GuardPilot_Support</p>
-        <p>Email: security@guardpilot.com</p>
-        <p>Telegram Group: t.me/guardpilot_news</p>
-    </div>
-</section>
-
-<section id="feedback">
-    <div class="lang-ru active">
-        <h2>Обратная связь</h2>
-        <form>
-            <input type="text" placeholder="Как к вам обращаться?">
-            <input type="email" placeholder="Ваш корпоративный email">
-            <textarea placeholder="Размер территории, особые требования"></textarea>
-            <button type="submit">Запросить демо-тур 🚁→</button>
-        </form>
-    </div>
-    <div class="lang-en">
-        <h2>Feedback</h2>
-        <form>
-            <input type="text" placeholder="Your name">
-            <input type="email" placeholder="Your corporate email">
-            <textarea placeholder="Site size, specific requirements"></textarea>
-            <button type="submit">Request a demo 🚁→</button>
-        </form>
-    </div>
-</section>
-
-<footer>
-    <div class="lang-ru active">
-        <p>🚨 Экстренный контакт: @GuardPilot_Alert (Telegram)</p>
-        <p>📩 Партнерство: partners@guardpilot.com</p>
-        <p>👥 Сообщество: t.me/guardpilot_ru</p>
-        <p>📍 Москва, Сколково, БЦ "Технопарк"</p>
-    </div>
-    <div class="lang-en">
-        <p>🚨 Emergency contact: @GuardPilot_Alert (Telegram)</p>
-        <p>📩 Partnerships: partners@guardpilot.com</p>
-        <p>👥 Community: t.me/guardpilot_ru</p>
-        <p>📍 Moscow, Skolkovo, "Technopark" BC</p>
-    </div>
-</footer>
-
-<script>
+  <script>
     function switchLang(lang) {
-        document.querySelectorAll('.lang-ru, .lang-en').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll(`.lang-${lang}`).forEach(el => el.classList.add('active'));
+      document.querySelectorAll('.lang-ru, .lang-en').forEach(el => {
+        el.classList.remove('active');
+      });
+      document.querySelectorAll(`.lang-${lang}`).forEach(el => {
+        el.classList.add('active');
+      });
     }
-</script>
+
+    function openDemoAndScroll() {
+      openDemo();
+      setTimeout(scrollToTech, 500);
+    }
+
+    function openDemo() {
+      alert("Открывается демо...");
+      // здесь можешь подставить модальное окно или редирект
+    }
+
+    function scrollToTech() {
+      document.getElementById("technology").scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
 </body>
+
 </html>
