@@ -103,6 +103,24 @@
       max-width: 80px;
       margin-bottom: 10px;
     }
+    #aboutModal .modal-content {
+      background: rgba(8, 28, 58, 0.95);
+      border: 2px solid #2A9D8F;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 0 30px rgba(42, 157, 143, 0.6);
+      animation: slideUpFadeIn 0.7s ease forwards;
+    }
+    @keyframes slideUpFadeIn {
+      0% {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 <body>
@@ -113,21 +131,32 @@
     <div class="lang-ru">
       <h1>Автономные дроны-охранники — ваша безопасность на новом уровне</h1>
       <p>GuardPilot обнаруживает угрозы, патрулирует и защищает без участия человека. 24/7. AI Inside.</p>
-      <a href="#demo" class="btn btn-glow me-3">🚁 Смотреть демо</a>
+      <a href="#" class="btn btn-outline-light me-2" onclick="openAboutPopup()">О компании</a>
+      <a href="#" class="btn btn-glow me-2" onclick="openAboutPopup()">🚁 Смотреть демо</a>
       <a href="#contact" class="btn btn-outline-light">Связаться</a>
     </div>
     <div class="lang-en" style="display:none">
       <h1>Autonomous Security Drones</h1>
       <p>GuardPilot detects threats, patrols and protects without human intervention. 24/7. AI Inside.</p>
-      <a href="#demo" class="btn btn-glow me-3">🚁 Watch Demo</a>
+      <a href="#" class="btn btn-glow me-3" onclick="openAboutPopup()">🚁 Watch Demo</a>
       <a href="#contact" class="btn btn-outline-light">Contact Us</a>
     </div>
   </section>
 
-  <section id="about" style="background-image: url('image/about-background.png');">
-    <div class="container glass">
-      <h2 class="section-title">О компании</h2>
-      <p>GuardPilot — это прорыв в области периметровой безопасности. Мы создаём интеллектуальных дронов, способных патрулировать объекты, обнаруживать подозрительное поведение и мгновенно уведомлять владельца или службу охраны через Telegram и другие каналы.</p>
+  <div id="aboutModal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-white">
+        <div class="modal-header border-0">
+          <h2 class="modal-title">О компании</h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>GuardPilot — это прорыв в области периметровой безопасности. Мы создаём интеллектуальных дронов, способных патрулировать объекты, обнаруживать подозрительное поведение и мгновенно уведомлять владельца или службу охраны через Telegram и другие каналы.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
     </div>
   </section>
 
