@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -106,14 +106,20 @@
 </head>
 <body>
 
-  <button class="scroll-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">↑</button>
+  <button class="scroll-to-top" aria-label="Наверх" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">↑</button>
 
   <section class="hero">
-    <div>
+    <div class="lang-ru">
       <h1>Автономные дроны-охранники</h1>
       <p>GuardPilot обнаруживает угрозы, патрулирует и защищает без участия человека. 24/7. AI Inside.</p>
       <a href="#demo" class="btn btn-glow me-3">🚁 Смотреть демо</a>
       <a href="#contact" class="btn btn-outline-light">Связаться</a>
+    </div>
+    <div class="lang-en" style="display:none">
+      <h1>Autonomous Security Drones</h1>
+      <p>GuardPilot detects threats, patrols and protects without human intervention. 24/7. AI Inside.</p>
+      <a href="#demo" class="btn btn-glow me-3">🚁 Watch Demo</a>
+      <a href="#contact" class="btn btn-outline-light">Contact Us</a>
     </div>
   </section>
 
@@ -151,7 +157,10 @@
           <input type="text" class="form-control" id="name" placeholder="Ваше имя" required>
         </div>
         <div class="mb-3">
-          <input type="email" class="form-control" id="email" placeholder="Email" required>
+          <input type="email" class="form-control" id="email" placeholder="Email" required pattern="[^@ 	
+]+@[^@ 	
+]+\.[^@ 	
+]+">
         </div>
         <div class="mb-3">
           <textarea class="form-control" id="message" rows="4" placeholder="Сообщение" required></textarea>
@@ -165,8 +174,14 @@
   <footer>
     <img src="image/logo.png" alt="GuardPilot Logo">
     <p>© 2025 GuardPilot. Все права защищены.</p>
-    <p>Email: <a href="mailto:2025pilot.guard@gmail.com">2025pilot.guard@gmail.com</a> | Telegram: <a href="https://t.me/+S0gA-bTBQI4wODcy" target="_blank">@JV_Guard</a></p>
-  </footer>
+    <nav>
+      <a href="#" class="text-light me-3">Главная</a>
+      <a href="#about" class="text-light me-3">О компании</a>
+      <a href="#demo" class="text-light me-3">Демо</a>
+      <a href="#contact" class="text-light">Контакты</a>
+    </nav>
+    <p class="mt-2">Email: <a href="mailto:2025pilot.guard@gmail.com">2025pilot.guard@gmail.com</a> | Telegram: <a href="https://t.me/+S0gA-bTBQI4wODcy" target="_blank">@JV_Guard</a></p>
+</footer>
 
   <div id="videoModal" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-lg">
@@ -176,7 +191,7 @@
         </div>
         <div class="modal-body">
           <div class="ratio ratio-16x9">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="GuardPilot Demo" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/k3gPSqs8bLs" title="GuardPilot Demo" allowfullscreen></iframe>
           </div>
         </div>
       </div>
@@ -203,5 +218,13 @@
     });
   </script>
 
+<script>
+    // Language toggle support (future proof)
+    const userLang = navigator.language || navigator.userLanguage;
+    if (userLang.startsWith('en')) {
+      document.querySelectorAll('.lang-ru').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'block');
+    }
+  </script>
 </body>
 </html>
