@@ -31,8 +31,7 @@
       align-items: flex-start;
       justify-content: center;
       text-align: center;
-      padding: 40px 20px 20px 20px;
-      padding-top: 60px;
+      padding: 60px 20px 40px;
     }
     .hero h1 {
       font-size: 3rem;
@@ -55,6 +54,35 @@
     .btn-glow:hover {
       box-shadow: 0 0 20px rgba(42, 157, 143, 1);
       transform: scale(1.05);
+    }
+    section {
+      padding: 80px 20px;
+      background-size: cover;
+      background-position: center;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .glass {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 60px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.3);
+    }
+    footer {
+      background: #000B1F;
+      color: #ccc;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    footer img {
+      max-width: 80px;
+      margin-bottom: 10px;
     }
     .scroll-to-top {
       position: fixed;
@@ -100,17 +128,66 @@
       <h1>Автономные дроны-охранники — ваша безопасность на новом уровне</h1>
       <p>GuardPilot обнаруживает угрозы, патрулирует и защищает без участия человека. 24/7. AI Inside.</p>
       <a href="#" class="btn btn-outline-light me-2" id="about-btn">О компании</a>
-      <a href="#" class="btn btn-glow me-2" onclick="openVideoPopup()">🚁 Смотреть демо</a>
+      <a href="#demo" class="btn btn-glow me-2">🚁 Смотреть демо</a>
       <a href="#contact" class="btn btn-outline-light">Связаться</a>
     </div>
     <div class="lang-en" style="display:none">
       <h1>Autonomous Security Drones</h1>
       <p>GuardPilot detects threats, patrols and protects without human intervention. 24/7. AI Inside.</p>
       <a href="#" class="btn btn-outline-light me-2" id="about-btn-en">About</a>
-      <a href="#" class="btn btn-glow me-2" onclick="openVideoPopup()">🚁 Watch Demo</a>
+      <a href="#demo" class="btn btn-glow me-2">🚁 Watch Demo</a>
       <a href="#contact" class="btn btn-outline-light">Contact Us</a>
     </div>
   </section>
+
+  <section style="background-image: url('image/mvp-background.png');">
+    <div class="container glass">
+      <h2 class="section-title">MVP Технологии</h2>
+      <ul>
+        <li>ИИ-распознавание на базе YOLOv8</li>
+        <li>Навигация с автопилотом PX4</li>
+        <li>Видеоаналитика через OpenCV</li>
+        <li>Интеграция Telegram и облачные уведомления</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="demo" style="background-image: url('image/demo-background.png');">
+    <div class="container glass text-center">
+      <h2 class="section-title">Демонстрация</h2>
+      <button class="btn btn-glow" onclick="openVideoPopup()">▶ Смотреть видео</button>
+    </div>
+  </section>
+
+  <section id="contact" style="background-image: url('image/contact-background.png');">
+    <div class="container glass">
+      <h2 class="section-title">Контакты</h2>
+      <form id="contactForm">
+        <div class="mb-3">
+          <input type="text" class="form-control" id="name" placeholder="Ваше имя" required>
+        </div>
+        <div class="mb-3">
+          <input type="email" class="form-control" id="email" placeholder="Email" required pattern="[^@ \t\n]+@[^@ \t\n]+\.[^@ \t\n]+">
+        </div>
+        <div class="mb-3">
+          <textarea class="form-control" id="message" rows="4" placeholder="Сообщение" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Отправить</button>
+        <div id="form-status" class="text-success mt-2"></div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <img src="image/logo.png" alt="GuardPilot Logo">
+    <p>© 2025 GuardPilot. Все права защищены.</p>
+    <nav>
+      <a href="#" class="text-light me-3">Главная</a>
+      <a href="#demo" class="text-light me-3">Демо</a>
+      <a href="#contact" class="text-light">Контакты</a>
+    </nav>
+    <p class="mt-2">Email: <a href="mailto:2025pilot.guard@gmail.com">2025pilot.guard@gmail.com</a> | Telegram: <a href="https://t.me/+S0gA-bTBQI4wODcy" target="_blank">@JV_Guard</a></p>
+  </footer>
 
   <div id="aboutModal" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -156,12 +233,24 @@
       modal.show();
     }
 
-    // Языковая адаптация
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      const mailto = `mailto:2025pilot.guard@gmail.com?subject=Сообщение от ${name}&body=Email: ${email}%0D%0A${message}`;
+      window.location.href = mailto;
+    });
+
     const userLang = navigator.language || navigator.userLanguage;
     if (userLang.startsWith('en')) {
       document.querySelectorAll('.lang-ru').forEach(el => el.style.display = 'none');
       document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'block');
     }
+
+    window.addEventListener('scroll', () => {
+      document.querySelector('.scroll-to-top').style.display = window.scrollY > 300 ? 'flex' : 'none';
+    });
   </script>
 </body>
 </html>
