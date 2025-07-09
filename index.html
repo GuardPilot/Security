@@ -6,35 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GuardPilot | Автономные дроны-охранники</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Rubik&display=swap" rel="stylesheet">
-    <link rel="icon" href="favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/scrollreveal"></script>
     <style>
+        :root {
+            --bg-dark: #020c1b;
+            --bg-light: #f5f7fa;
+            --text-dark: #fff;
+            --text-light: #0A2463;
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
-            background: #020c1b;
-            color: #fff;
+            background: var(--bg-dark);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
         }
 
-        .lang-toggle {
+        .light-mode {
+            background: var(--bg-light);
+            color: var(--text-light);
+        }
+
+        .lang-toggle, .theme-toggle {
             position: fixed;
             top: 20px;
-            right: 20px;
             z-index: 999;
         }
 
-        .lang-toggle button {
+        .lang-toggle {
+            right: 100px;
+        }
+
+        .theme-toggle {
+            right: 20px;
+        }
+
+        .lang-toggle button, .theme-toggle button {
             background-color: #61E8E1;
             border: none;
             padding: 8px 14px;
             border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .lang-toggle button:hover {
-            background-color: #48c5c0;
+            margin-left: 5px;
         }
 
         .lang-ru, .lang-en {
@@ -48,6 +66,11 @@
         section {
             padding: 80px 20px;
             text-align: center;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         .futuristic-button {
@@ -96,6 +119,52 @@
             color: #aaa;
             font-size: 0.9rem;
         }
+
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+            p, li {
+                font-size: 1rem;
+            }
+            .futuristic-button {
+                width: 90%;
+                padding: 12px;
+            }
+        }
+
+        .modal-custom {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+
+        .modal-content-custom {
+            position: relative;
+            margin: 10% auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 720px;
+            background: #111;
+            border-radius: 10px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -104,69 +173,23 @@
         <button onclick="switchLang('ru')">RU</button>
         <button onclick="switchLang('en')">EN</button>
     </div>
+    <div class="theme-toggle">
+        <button onclick="toggleTheme()">🌗 Тема</button>
+    </div>
 
-    <section id="hero" style="background: url('hero-background.png') center/cover no-repeat;">
-        <div class="lang-ru active">
-            <h1>GuardPilot: Автономные дроны-охранники 24/7</h1>
-            <p>Комплексная защита периметра с ИИ-аналитикой</p>
-            <button class="futuristic-button" onclick="openDemoAndScroll()">▶️ Смотреть демо</button>
-            <button class="futuristic-button" onclick="scrollToSpecs()">🚀 Характеристики</button>
-        </div>
-        <div class="lang-en">
-            <h1>GuardPilot: Autonomous Security Drones 24/7</h1>
-            <p>Comprehensive perimeter protection with AI analytics</p>
-            <button class="futuristic-button" onclick="openDemoAndScroll()">▶️ Watch Demo</button>
-            <button class="futuristic-button" onclick="scrollToSpecs()">🚀 Specs</button>
-        </div>
-    </section>
-
-    <section id="about" style="background: url('about-background.png') center/cover no-repeat;">
-        <h2>О компании</h2>
-        <p>GuardPilot создаёт автономные дроны для охраны объектов — от частных домов до промышленных комплексов. Мы сочетаем ИИ, сенсорику и автономность, чтобы обеспечить непрерывную защиту 24/7.</p>
-    </section>
-
-    <section id="goal" style="background: url('goals-background.png') center/cover no-repeat;">
-        <h2>Наша цель</h2>
-        <ul>
-            <li>🛡 Первая линия обороны — дроны</li>
-            <li>📉 Минус 70% ложных тревог</li>
-            <li>⚡ Реакция за 8.3 сек</li>
-        </ul>
-        <p>📍 Москва, Сколково</p>
-    </section>
-
-    <section id="technology" style="background: url('mvp-background.png') center/cover no-repeat;">
-        <h2>Технология MVP</h2>
-        <p>🚁 [Дрон] → 🧠 [YOLOv8 ИИ] → 📲 [Telegram Alert]</p>
-        <p>↗ 📦 [Док-станция] + OpenCV, PX4, RPi, Telegram API</p>
-    </section>
-
-    <section id="demo" style="background: url('demo-background.png') center/cover no-repeat;">
+    <!-- Example Demo Section -->
+    <section id="demo" style="background-image: url('image/demo-background.png');">
         <h2>Демо-видео</h2>
-        <iframe width="90%" height="315" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
-        <p>Сценарий: 🛡 Патруль → 👁 Обнаружение → 🚨 Тревога → 🛬 Возврат</p>
+        <button class="futuristic-button" onclick="openCustomModal()">▶️ Смотреть демо</button>
     </section>
 
-    <section id="contact" style="background: url('contact-background.png') center/cover no-repeat;">
-        <h2>Контакты</h2>
-        <ul>
-            <li>Telegram: <a href="https://t.me/GuardPilot_Support" target="_blank">@GuardPilot_Support</a></li>
-            <li>Email: <a href="mailto:security@guardpilot.com">security@guardpilot.com</a></li>
-            <li>Новости: <a href="https://t.me/guardpilot_news" target="_blank">t.me/guardpilot_news</a></li>
-        </ul>
-    </section>
-
-    <section id="feedback" style="background: url('feedback-background.png') center/cover no-repeat;">
-        <h2>Обратная связь</h2>
-        <div class="glass-card">
-            <form>
-                <input type="text" placeholder="👤 Ваше имя" required><br>
-                <input type="email" placeholder="✉ Email" required><br>
-                <textarea placeholder="📋 Запрос, территория, требования..." required></textarea><br>
-                <button class="futuristic-button" type="submit">Запросить демо 🚁</button>
-            </form>
+    <!-- Modal for Demo Video -->
+    <div id="demoModal" class="modal-custom">
+        <div class="modal-content-custom">
+            <span class="modal-close" onclick="closeCustomModal()">&times;</span>
+            <iframe width="100%" height="400" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
         </div>
-    </section>
+    </div>
 
     <footer>
         <p>© 2025 GuardPilot. Все права защищены.</p>
@@ -179,13 +202,39 @@
             document.querySelectorAll(`.lang-${lang}`).forEach(el => el.classList.add('active'));
         }
 
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+        }
+
         function openDemoAndScroll() {
-            window.scrollTo({ top: document.getElementById('demo').offsetTop, behavior: 'smooth' });
+            document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
             setTimeout(() => alert("Запуск демо"), 800);
         }
 
         function scrollToSpecs() {
-            window.scrollTo({ top: document.getElementById('technology').offsetTop, behavior: 'smooth' });
+            document.getElementById('technology').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function handleDoubleAction() {
+            openDemoAndScroll();
+            setTimeout(scrollToSpecs, 2000);
+        }
+
+        ScrollReveal().reveal('section', {
+            delay: 100,
+            distance: '40px',
+            duration: 900,
+            easing: 'ease-in-out',
+            origin: 'bottom'
+        });
+
+        // Custom Modal
+        function openCustomModal() {
+            document.getElementById('demoModal').style.display = 'block';
+        }
+
+        function closeCustomModal() {
+            document.getElementById('demoModal').style.display = 'none';
         }
     </script>
 </body>
