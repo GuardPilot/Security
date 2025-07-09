@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GuardPilot | Автономные дроны-охранники</title>
+  <meta name="description" content="GuardPilot — автономные дроны-охранники с ИИ для круглосуточной охраны объектов.">
+  <meta name="keywords" content="дрон, охрана, безопасность, искусственный интеллект, security drone, AI">
+  <meta name="author" content="GuardPilot Team">
+  <meta property="og:title" content="GuardPilot — автономные дроны-охранники">
+  <meta property="og:description" content="GuardPilot — ИИ-дроны для защиты объектов 24/7.">
+  <meta property="og:image" content="image/hero-background.png">
+  <meta property="og:url" content="https://guardpilot.github.io/Security/">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "GuardPilot",
+    "url": "https://guardpilot.github.io/Security/",
+    "logo": "https://guardpilot.github.io/Security/image/logo.png",
+    "sameAs": ["https://t.me/+S0gA-bTBQI4wODcy"],
+    "description": "GuardPilot — автономные дроны-охранники с ИИ для круглосуточной охраны объектов."
+  }
+  </script>
+
+  <link rel="icon" href="image/logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>body{margin:0;font-family:'Montserrat',sans-serif;background:#081C3A;color:#fff}h1,h2,h3{font-weight:700}.hero{min-height:100vh;background:url('image/hero-background.png') center/cover no-repeat;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px}.btn-glow{background:#2A9D8F;color:white;border:none;box-shadow:0 0 10px rgba(42,157,143,.8)}.glass{background:rgba(255,255,255,.05);backdrop-filter:blur(8px);border-radius:16px;padding:60px}.scroll-to-top{position:fixed;bottom:20px;right:20px;background:#2A9D8F;color:#fff;border:none;border-radius:50%;width:50px;height:50px;display:none;justify-content:center;align-items:center;font-size:20px;z-index:999}@media(max-width:768px){.hero h1{font-size:1.8rem}.hero p{font-size:1rem}}</style>
+</head>
+<body>
+  <section class="hero">
+    <h1>Автономные дроны-охранники</h1>
+    <p>GuardPilot обнаруживает угрозы, патрулирует и защищает без участия человека. 24/7. AI Inside.</p>
+    <a href="#demo" class="btn btn-glow">🚁 Смотреть демо</a>
+  </section>
+  <section id="demo" class="glass">
+    <h2>Демонстрация</h2>
+    <div class="ratio ratio-16x9">
+      <iframe src="https://www.youtube.com/embed/k3gPSqs8bLs?autoplay=1&mute=1" allowfullscreen></iframe>
+    </div>
+    <canvas id="droneCanvas" style="width:100%; height:500px; background:#000; margin-top:40px;"></canvas>
+  </section>
+  <footer class="text-center text-muted p-4">
+    <p>© 2025 GuardPilot | <a href="mailto:2025pilot.guard@gmail.com">2025pilot.guard@gmail.com</a></p>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.150.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.150.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script>
+    AOS.init();
+    const canvas = document.getElementById("droneCanvas");
+    const renderer = new THREE.WebGLRenderer({canvas, antialias: true});
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth/canvas.clientHeight, 0.1, 1000);
+    camera.position.set(0, 1.5, 3);
+    const light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(5,5,5);
+    scene.add(light);
+    const ambient = new THREE.AmbientLight(0x404040, 1.5);
+    scene.add(ambient);
+    const loader = new THREE.GLTFLoader();
+    loader.load("drone.glb", gltf => {
+      const model = gltf.scene;
+      model.rotation.y = Math.PI;
+      scene.add(model);
+      animate();
+    });
+    function animate() {
+      requestAnimationFrame(animate);
+      scene.rotation.y += 0.005;
+      renderer.render(scene, camera);
+    }
+  </script>
+</body>
+</html>
