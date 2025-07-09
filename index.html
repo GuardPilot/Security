@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GuardPilot | Автономные дроны-охранники</title>
 
-  <!-- SEO Meta -->
+  <!-- SEO и Schema.org -->
   <meta name="description" content="GuardPilot — автономные дроны-охранники с ИИ для круглосуточной охраны объектов.">
   <meta name="keywords" content="дрон, охрана, безопасность, искусственный интеллект, security drone, AI">
   <meta name="author" content="GuardPilot Team">
@@ -14,8 +14,6 @@
   <meta property="og:image" content="image/hero-background.png">
   <meta property="og:url" content="https://guardpilot.github.io/Security/">
   <meta name="twitter:card" content="summary_large_image">
-
-  <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -28,6 +26,7 @@
   }
   </script>
 
+  <!-- Шрифты и стили -->
   <link rel="icon" href="image/logo.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -35,9 +34,7 @@
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
@@ -54,16 +51,6 @@
       text-align: center;
       position: relative;
     }
-    .hero h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      text-shadow: 0 0 10px rgba(0,255,255,0.5);
-    }
-    .hero p {
-      max-width: 600px;
-      font-size: 1.1rem;
-      margin: 20px 0;
-    }
     .btn-glow {
       background: #2A9D8F;
       color: white;
@@ -74,11 +61,7 @@
       box-shadow: 0 0 20px rgba(42, 157, 143, 1);
       transform: scale(1.05);
     }
-    .section {
-      padding: 80px 20px;
-      background-size: cover;
-      background-position: center;
-    }
+    .section { padding: 80px 20px; background-size: cover; background-position: center; }
     .glass {
       background: rgba(255,255,255,0.05);
       border-radius: 16px;
@@ -90,10 +73,6 @@
       color: #ccc;
       text-align: center;
       padding: 40px 20px;
-    }
-    footer img {
-      width: 60px;
-      margin-bottom: 10px;
     }
     .scroll-to-top {
       position: fixed;
@@ -109,150 +88,76 @@
       font-size: 20px;
       z-index: 999;
     }
-    .lang-switch {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-    }
-    .preloader {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background: #081C3A;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
-    .spinner-border {
-      width: 3rem;
-      height: 3rem;
-      color: #2A9D8F;
-    }
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 1.8rem; }
-      .hero p { font-size: 1rem; }
+    canvas#drone-canvas {
+      width: 100%;
+      height: 500px;
+      display: block;
     }
   </style>
 </head>
 <body>
-  <!-- Preloader -->
-  <div class="preloader" id="preloader" role="status" aria-label="Загрузка сайта">
-    <div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>
-  </div>
-
-  <!-- Scroll Top Button -->
-  <button class="scroll-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">↑</button>
-
-  <!-- Hero -->
   <section class="hero" id="hero">
-    <div class="lang-switch">
-      <button onclick="switchLang()" class="btn btn-outline-light btn-sm" aria-label="Переключить язык">🌐</button>
-    </div>
-    <div class="lang lang-ru">
-      <h1>Автономные дроны-охранники — ваша безопасность на новом уровне</h1>
-      <p>GuardPilot обнаруживает угрозы, патрулирует и защищает без участия человека. 24/7. AI Inside.</p>
-      <a href="#" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#aboutModal">О компании</a>
-      <a href="#demo" class="btn btn-glow me-2">🚁 Смотреть демо</a>
-      <a href="#contact" class="btn btn-outline-light">Связаться</a>
-    </div>
-    <div class="lang lang-en d-none">
-      <h1>Autonomous Security Drones — Your Safety Elevated</h1>
-      <p>GuardPilot detects threats, patrols, and protects without human intervention. 24/7. AI Inside.</p>
-      <a href="#" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#aboutModal">About</a>
-      <a href="#demo" class="btn btn-glow me-2">🚁 Watch Demo</a>
-      <a href="#contact" class="btn btn-outline-light">Contact</a>
-    </div>
+    <h1>Автономные дроны-охранники</h1>
+    <p>GuardPilot обнаруживает угрозы, патрулирует и защищает без участия человека. 24/7. AI Inside.</p>
+    <a href="#demo" class="btn btn-glow me-2">🚁 Смотреть демо</a>
   </section>
 
-  <!-- MVP -->
-  <section id="mvp" class="section" style="background-image: url('image/mvp-background.png');" data-aos="fade-up">
-    <div class="container glass">
-      <h2 class="text-center mb-4">MVP Технологии</h2>
-      <ul class="list-unstyled">
-        <li><i class="bi bi-cpu me-2 text-info"></i> ИИ-распознавание на базе YOLOv8</li>
-        <li><i class="bi bi-drone me-2 text-info"></i> Автопилот PX4</li>
-        <li><i class="bi bi-camera-video me-2 text-info"></i> Видеоаналитика через OpenCV</li>
-        <li><i class="bi bi-telegram me-2 text-info"></i> Уведомления через Telegram</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Demo -->
-  <section id="demo" class="section" style="background-image: url('image/demo-background.png');" data-aos="fade-up">
+  <section id="demo" class="section" style="background-image: url('image/demo-background.png');">
     <div class="container glass text-center">
       <h2 class="mb-4">Демонстрация</h2>
-      <div class="ratio ratio-16x9">
+      <div class="ratio ratio-16x9 mb-4">
         <iframe src="https://www.youtube.com/embed/k3gPSqs8bLs?autoplay=1&mute=1" allowfullscreen title="Demo Video"></iframe>
       </div>
+      <canvas id="drone-canvas"></canvas>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="section" style="background-image: url('image/contact-background.png');" data-aos="fade-up">
-    <div class="container glass">
-      <h2 class="text-center mb-4">Контакты</h2>
-      <form id="contactForm">
-        <input type="text" class="form-control mb-3" id="name" placeholder="Имя" required aria-label="Имя">
-        <input type="email" class="form-control mb-3" id="email" placeholder="Email" required aria-label="Email">
-        <textarea class="form-control mb-3" id="message" rows="4" placeholder="Сообщение" required aria-label="Сообщение"></textarea>
-        <button type="submit" class="btn btn-primary w-100">Отправить</button>
-        <div id="form-status" class="text-success mt-2"></div>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer>
-    <img src="image/logo.png" alt="GuardPilot logo" />
-    <p>© 2025 GuardPilot</p>
-    <p>Email: <a href="mailto:2025pilot.guard@gmail.com">2025pilot.guard@gmail.com</a><br>
-    Telegram: <a href="https://t.me/+S0gA-bTBQI4wODcy" target="_blank">@JV_Guard</a></p>
+    <img src="image/logo.png" alt="GuardPilot logo" style="width:60px;" />
+    <p>© 2025 GuardPilot | <a href="mailto:2025pilot.guard@gmail.com">2025pilot.guard@gmail.com</a></p>
   </footer>
-
-  <!-- About Modal -->
-  <div class="modal fade" id="aboutModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content text-white" style="background: #081C3A; border: 2px solid #2A9D8F;">
-        <div class="modal-header border-0">
-          <h5 class="modal-title">О компании</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-        </div>
-        <div class="modal-body">
-          <p>GuardPilot — прорыв в сфере автономной охраны. Мы создаём умных дронов, которые патрулируют, анализируют и реагируют на угрозы в реальном времени.</p>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/loaders/GLTFLoader.js"></script>
   <script>
-    // Preloader
-    window.addEventListener('load', () => {
-      document.getElementById('preloader').style.display = 'none';
-    });
-
-    // Scroll button
+    // Scroll-to-top
     window.addEventListener('scroll', () => {
       document.querySelector('.scroll-to-top').style.display = window.scrollY > 300 ? 'flex' : 'none';
     });
 
-    // AOS
-    AOS.init();
+    // Three.js 3D Drone Model
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("drone-canvas"), alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, 500);
+    renderer.shadowMap.enabled = true;
 
-    // Language switch
-    function switchLang() {
-      document.querySelectorAll('.lang').forEach(el => el.classList.toggle('d-none'));
+    const light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(10, 20, 10);
+    light.castShadow = true;
+    scene.add(light);
+
+    const ambient = new THREE.AmbientLight(0x404040, 1.5);
+    scene.add(ambient);
+
+    const loader = new THREE.GLTFLoader();
+    loader.load('model/drone.glb', gltf => {
+      const drone = gltf.scene;
+      drone.scale.set(3, 3, 3);
+      drone.rotation.y = Math.PI;
+      scene.add(drone);
+      animate();
+    }, undefined, err => console.error(err));
+
+    camera.position.z = 8;
+
+    function animate() {
+      requestAnimationFrame(animate);
+      scene.rotation.y += 0.005;
+      renderer.render(scene, camera);
     }
-
-    // Contact form EmailJS (replace with your EmailJS)
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      document.getElementById('form-status').innerText = "✅ Сообщение отправлено!";
-      setTimeout(() => document.getElementById('form-status').innerText = "", 5000);
-    });
   </script>
 </body>
 </html>
