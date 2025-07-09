@@ -1,6 +1,6 @@
+html_code = """
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,265 +8,118 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Rubik&display=swap" rel="stylesheet">
     <style>
         body {
-            background: radial-gradient(#0f2027, #2c5364);
-            color: #F8F9FA;
             font-family: 'Montserrat', sans-serif;
+            background: #0A2463;
+            color: white;
             margin: 0;
             padding: 0;
         }
-
-        section {
-            padding: clamp(60px, 8vw, 100px) 5vw;
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
+        .lang-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999;
         }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .lang-toggle button {
+            background-color: #61E8E1;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
-
-        h1 {
-            font-size: clamp(1.8rem, 4vw, 3rem);
+        .lang-toggle button:hover {
+            background-color: #48c5c0;
         }
-
-        h2 {
-            font-size: clamp(1.5rem, 3.2vw, 2.5rem);
+        .lang-ru, .lang-en {
+            display: none;
         }
-
-        p, li {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
+        .lang-ru.active, .lang-en.active {
+            display: block;
         }
-
+        section, footer {
+            padding: 40px;
+        }
+        h1, h2, p, li, button {
+            margin-bottom: 12px;
+        }
         button.cta {
+            margin: 6px;
             background-color: #61E8E1;
             border: none;
-            padding: 1rem 2rem;
-            margin: 10px;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-        }
-
-        button.cta:hover {
-            background-color: #48c5c0;
-        }
-
-        .drone-path {
-            position: relative;
-            width: clamp(200px, 40vw, 300px);
-            height: clamp(200px, 40vw, 300px);
-            margin: 40px auto 0;
-            animation: moveDrone 8s linear infinite;
-        }
-
-        @keyframes moveDrone {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(50px, -50px) rotate(5deg); }
-            50% { transform: translate(100px, 0) rotate(-5deg); }
-            75% { transform: translate(50px, 50px) rotate(5deg); }
-            100% { transform: translate(0, 0) rotate(0deg); }
-        }
-
-        .drone-path img {
-            animation: dronePulse 2s ease-in-out infinite;
-            width: 100%;
-        }
-
-        @keyframes dronePulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.9; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .drone-svg-path {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .drone-svg-path path {
-            stroke: #61E8E1;
-            stroke-width: 2;
-            fill: none;
-            stroke-dasharray: 300;
-            stroke-dashoffset: 300;
-            animation: drawPath 3s ease-out forwards;
-        }
-
-        @keyframes drawPath {
-            to {
-                stroke-dashoffset: 0;
-            }
-        }
-
-        .goals-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            text-align: center;
-        }
-
-        .mvp-timeline {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin: 20px 0;
-            position: relative;
-            gap: 15px;
-        }
-
-        .mvp-item {
-            flex: 1 1 120px;
             padding: 10px 20px;
-            border: 2px solid #61E8E1;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-            position: relative;
-            z-index: 2;
-            background-color: #0f2027;
-            text-align: center;
-        }
-
-        .mvp-timeline::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(to right, #61E8E1 60%, rgba(255,255,255,0.1) 60%);
-            z-index: 1;
-        }
-
-        .mvp-item.done {
-            background-color: #61E8E1;
-            color: #0f2027;
-        }
-
-        .mvp-item.current {
-            background-color: #D8315B;
-            color: #fff;
-        }
-
-        .contacts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        input, textarea {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        button[type="submit"] {
-            background-color: #61E8E1;
-            border: none;
-            padding: 15px;
+            border-radius: 6px;
+            font-weight: bold;
             cursor: pointer;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #48c5c0;
-        }
-
-        footer {
-            position: relative;
-            overflow: hidden;
-            padding: 30px 5vw;
-            font-size: 0.9rem;
-            text-align: center;
-        }
-
-        footer::after {
-            content: "";
-            position: absolute;
-            width: 200%;
-            height: 50px;
-            background: linear-gradient(270deg, #61E8E1, #2A9D8F);
-            animation: wave 4s linear infinite;
-            bottom: 0;
-            left: -50%;
-        }
-
-        @keyframes wave {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(50%); }
-        }
-
-        @media (max-width: 480px) {
-            .cta {
-                width: 100%;
-            }
-
-            input, textarea {
-                font-size: 0.9rem;
-            }
-
-            .drone-path {
-                width: 220px;
-                height: 220px;
-            }
         }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('section');
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-        });
-    </script>
 </head>
-
 <body>
-    <!-- Hero Section -->
-    <section id="hero" style="text-align: center; background-image: url('hero-background.jpg');">
-        <h1>GuardPilot: Автономные дроны-охранники 24/7</h1>
-        <p>Комплексная защита периметра с ИИ-аналитикой</p>
-        <button class="cta" onclick="openDemo()">▶️ Смотреть демо</button>
-        <button class="cta" onclick="scrollToTech()">🚀 Технические характеристики</button>
-        <div class="drone-path">
-            <img src="drone-icon.png" alt="Drone Icon">
-            <svg class="drone-svg-path">
-                <path d="M 10 150 C 80 30, 220 30, 290 150" />
-            </svg>
+    <div class="lang-toggle">
+        <button onclick="switchLang('ru')">RU</button>
+        <button onclick="switchLang('en')">EN</button>
+    </div>
+
+    <section id="hero" style="text-align: center; background-color: #061f3f;">
+        <div class="lang-ru active">
+            <h1>GuardPilot: Автономные дроны-охранники 24/7</h1>
+            <p>Комплексная защита периметра с ИИ-аналитикой</p>
+            <button class="cta" onclick="alert('Demo coming soon')">▶️ Смотреть демо</button>
+            <button class="cta" onclick="alert('Tech info coming soon')">🚀 Технические характеристики</button>
+        </div>
+        <div class="lang-en">
+            <h1>GuardPilot: Autonomous Security Drones 24/7</h1>
+            <p>Comprehensive perimeter protection with AI analytics</p>
+            <button class="cta" onclick="alert('Demo coming soon')">▶️ Watch Demo</button>
+            <button class="cta" onclick="alert('Tech info coming soon')">🚀 Tech Specs</button>
         </div>
     </section>
 
-    <!-- Оставшиеся секции без изменений -->
-    <!-- ... (оставшийся HTML-код без изменений) -->
-</body>
+    <section id="about">
+        <div class="lang-ru active">
+            <h2>О компании</h2>
+            <p>GuardPilot специализируется на создании автономных дрон-систем безопасности...</p>
+        </div>
+        <div class="lang-en">
+            <h2>About</h2>
+            <p>GuardPilot specializes in developing autonomous drone security systems...</p>
+        </div>
+    </section>
 
+    <section id="mission">
+        <div class="lang-ru active">
+            <h2>Наша цель</h2>
+            <ul>
+                <li>Превратить дроны в первую линию обороны</li>
+                <li>Снижение ложных срабатываний на 70%</li>
+                <li>Реакция на угрозу за 8.3 секунды</li>
+            </ul>
+        </div>
+        <div class="lang-en">
+            <h2>Our Mission</h2>
+            <ul>
+                <li>Turn drones into the first line of defense</li>
+                <li>Reduce false positives by 70%</li>
+                <li>Threat response time: 8.3 seconds</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="lang-ru active">
+            <p>📍 Москва, Сколково</p>
+        </div>
+        <div class="lang-en">
+            <p>📍 Moscow, Skolkovo</p>
+        </div>
+    </footer>
+
+    <script>
+        function switchLang(lang) {
+            document.querySelectorAll('.lang-ru, .lang-en').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.lang-' + lang).forEach(el => el.classList.add('active'));
+        }
+    </script>
+</body>
 </html>
