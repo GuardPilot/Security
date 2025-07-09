@@ -5,72 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GuardPilot | Автономные дроны-охранники</title>
   <meta name="description" content="GuardPilot — автономные дроны-охранники с ИИ для круглосуточной охраны объектов.">
-  <meta name="keywords" content="дрон, охрана, безопасность, искусственный интеллект, security drone, AI, autonomous drone, surveillance">
+  <meta name="keywords" content="дрон, охрана, безопасность, искусственный интеллект, security drone, AI">
   <meta name="author" content="GuardPilot Team">
   <meta property="og:title" content="GuardPilot — автономные дроны-охранники">
   <meta property="og:description" content="GuardPilot — ИИ-дроны для защиты объектов 24/7.">
-  <meta property="og:image" content="image/hero-background.webp">
+  <meta property="og:image" content="image/hero-background.png">
   <meta property="og:url" content="https://guardpilot.github.io/Security/">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="image/logo.png">
+  <link rel="icon" href="image/logo.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <style>
-    :root {
-      --main-color: #2A9D8F;
-      --bg-gradient: linear-gradient(to bottom right, #081C3A, #0A2463);
-      --text-color: #fff;
-    }
-    * {
-      box-sizing: border-box;
-    }
     body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
-      background: var(--bg-gradient);
-      color: var(--text-color);
+      background: linear-gradient(to bottom right, #081C3A, #0A2463);
+      color: #fff;
       scroll-behavior: smooth;
     }
-    header {
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .language-toggle {
-      cursor: pointer;
-      color: var(--main-color);
-      font-weight: bold;
-    }
     .hero {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('image/hero-background.webp') center/cover no-repeat;
+      background: url('image/hero-background.png') center/cover no-repeat;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       text-align: center;
       padding: 60px 20px;
     }
     .hero h1 {
-      font-size: 3rem;
+      font-size: 2.5rem;
       font-weight: 700;
       margin-bottom: 20px;
       text-shadow: 0 0 10px rgba(0,255,255,0.5);
-      animation: fadeUp 1.5s ease forwards;
     }
     .hero p {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       max-width: 600px;
-      margin: 0 auto 30px;
-      opacity: 0;
-      animation: fadeUp 1.5s ease 0.3s forwards;
+      margin-bottom: 30px;
     }
     .btn-glow {
-      background: var(--main-color);
+      background: #2A9D8F;
       color: white;
       border: none;
       box-shadow: 0 0 10px rgba(42, 157, 143, 0.8);
@@ -84,8 +62,6 @@
       padding: 80px 20px;
       background-size: cover;
       background-position: center;
-      opacity: 0;
-      transform: translateY(50px);
     }
     .section-title {
       font-size: 2rem;
@@ -97,7 +73,6 @@
       background: rgba(255,255,255,0.05);
       border-radius: 16px;
       backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
       padding: 60px;
       box-shadow: 0 0 30px rgba(0,0,0,0.3);
     }
@@ -115,7 +90,7 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background: var(--main-color);
+      background: #2A9D8F;
       color: #fff;
       border: none;
       border-radius: 50%;
@@ -127,66 +102,159 @@
       font-size: 20px;
       z-index: 999;
     }
+    .lang-switch {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
     #aboutModal .modal-content {
       background: rgba(8, 28, 58, 0.95);
-      border: 2px solid var(--main-color);
+      border: 2px solid #2A9D8F;
       border-radius: 20px;
       padding: 40px;
       box-shadow: 0 0 30px rgba(42, 157, 143, 0.6);
       animation: slideUpFadeIn 0.7s ease forwards;
     }
     @keyframes slideUpFadeIn {
-      0% { transform: translateY(30px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-    @keyframes fadeUp {
-      from { transform: translateY(30px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+      0% {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2rem; }
-      .hero p { font-size: 1rem; }
-      .glass { padding: 30px; }
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="image/logo.png" alt="GuardPilot Logo" height="40">
-    <div class="language-toggle" onclick="toggleLang()">🌐 EN / RU</div>
-  </header>
-  <section class="hero">
+
+  <button class="scroll-to-top" aria-label="Наверх" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">↑</button>
+
+  <section class="hero" id="hero">
     <div class="lang-ru">
+      <div class="lang-switch">
+        <button onclick="switchLang('en')" class="btn btn-sm btn-outline-light">EN</button>
+      </div>
       <h1>Автономные дроны-охранники — ваша безопасность на новом уровне</h1>
       <p>GuardPilot обнаруживает угрозы, патрулирует и защищает без участия человека. 24/7. AI Inside.</p>
-      <a href="#demo" class="btn btn-glow">🚁 Смотреть демо</a>
+      <a href="#" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#aboutModal">О компании</a>
+      <a href="#demo" class="btn btn-glow me-2">🚁 Смотреть демо</a>
+      <a href="#contact" class="btn btn-outline-light">Связаться</a>
     </div>
     <div class="lang-en" style="display:none">
-      <h1>Autonomous Security Drones — your safety, reimagined</h1>
-      <p>GuardPilot detects threats, patrols, and protects without human involvement. 24/7. AI Inside.</p>
-      <a href="#demo" class="btn btn-glow">🚁 Watch Demo</a>
+      <div class="lang-switch">
+        <button onclick="switchLang('ru')" class="btn btn-sm btn-outline-light">RU</button>
+      </div>
+      <h1>Autonomous Security Drones — Your Safety Elevated</h1>
+      <p>GuardPilot detects threats, patrols, and protects 24/7 without human intervention. AI Inside.</p>
+      <a href="#" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#aboutModal">About</a>
+      <a href="#demo" class="btn btn-glow me-2">🚁 Watch Demo</a>
+      <a href="#contact" class="btn btn-outline-light">Contact</a>
     </div>
   </section>
+
+  <section style="background-image: url('image/mvp-background.png');" data-aos="fade-up">
+    <div class="container glass">
+      <h2 class="section-title">MVP Технологии</h2>
+      <ul>
+        <li>ИИ-распознавание на базе YOLOv8</li>
+        <li>Навигация с автопилотом PX4</li>
+        <li>Видеоаналитика через OpenCV</li>
+        <li>Интеграция Telegram и облачные уведомления</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="demo" style="background-image: url('image/demo-background.png');" data-aos="fade-up">
+    <div class="container glass text-center">
+      <h2 class="section-title">Демонстрация</h2>
+      <button class="btn btn-glow" onclick="openVideoPopup()">▶ Смотреть видео</button>
+    </div>
+  </section>
+
+  <section id="contact" style="background-image: url('image/contact-background.png');" data-aos="fade-up">
+    <div class="container glass">
+      <h2 class="section-title">Контакты</h2>
+      <form id="contactForm">
+        <div class="mb-3">
+          <input type="text" class="form-control" id="name" placeholder="Ваше имя" required>
+        </div>
+        <div class="mb-3">
+          <input type="email" class="form-control" id="email" placeholder="Email" required>
+        </div>
+        <div class="mb-3">
+          <textarea class="form-control" id="message" rows="4" placeholder="Сообщение" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Отправить</button>
+        <div id="form-status" class="text-success mt-2"></div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <img src="image/logo.png" alt="GuardPilot Logo">
+    <p>© 2025 GuardPilot. Все права защищены.</p>
+    <p>Email: <a href="mailto:2025pilot.guard@gmail.com">2025pilot.guard@gmail.com</a> | Telegram: <a href="https://t.me/+S0gA-bTBQI4wODcy" target="_blank">@JV_Guard</a></p>
+  </footer>
+
+  <div id="aboutModal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-white">
+        <div class="modal-header border-0">
+          <h2 class="modal-title">О компании</h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>GuardPilot — это прорыв в области периметровой безопасности. Мы создаём интеллектуальных дронов, способных патрулировать объекты, обнаруживать подозрительное поведение и мгновенно уведомлять владельца или службу охраны через Telegram и другие каналы.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="videoModal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content bg-dark">
+        <div class="modal-header border-0">
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="ratio ratio-16x9">
+            <iframe src="https://www.youtube.com/embed/k3gPSqs8bLs" title="GuardPilot Demo" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
-    function toggleLang() {
-      document.querySelectorAll('.lang-ru').forEach(el => el.style.display = el.style.display === 'none' ? 'block' : 'none');
-      document.querySelectorAll('.lang-en').forEach(el => el.style.display = el.style.display === 'none' ? 'block' : 'none');
+    AOS.init();
+    function switchLang(lang) {
+      document.querySelectorAll('.lang-ru').forEach(el => el.style.display = lang === 'ru' ? 'block' : 'none');
+      document.querySelectorAll('.lang-en').forEach(el => el.style.display = lang === 'en' ? 'block' : 'none');
     }
-    document.addEventListener("DOMContentLoaded", function() {
-      gsap.registerPlugin(ScrollTrigger);
-      gsap.utils.toArray("section").forEach(section => {
-        gsap.to(section, {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 80%",
-            toggleActions: "play none none none"
-          }
-        });
-      });
+    function openVideoPopup() {
+      const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('videoModal'));
+      modal.show();
+    }
+    window.addEventListener('scroll', () => {
+      document.querySelector('.scroll-to-top').style.display = window.scrollY > 300 ? 'flex' : 'none';
+    });
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      const mailto = `mailto:2025pilot.guard@gmail.com?subject=Сообщение от ${name}&body=Email: ${email}%0D%0A${message}`;
+      window.location.href = mailto;
     });
   </script>
 </body>
