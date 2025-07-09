@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ru">
 
 <head>
@@ -6,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GuardPilot | Автономные дроны-охранники</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Rubik&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico">
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #0A2463;
+            background: linear-gradient(to bottom right, #0A2463, #020c1b);
             color: #fff;
+            background-image: url('background-grid.png');
+            background-size: cover;
         }
 
         .lang-toggle {
@@ -44,6 +46,11 @@
             display: block;
         }
 
+        section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
         .futuristic-button {
             margin-top: 20px;
             padding: 14px 28px;
@@ -63,8 +70,32 @@
             box-shadow: 0 0 20px #61E8E1;
         }
 
-        section {
-            padding: 60px 20px;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        input, textarea {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: #020c1b;
+            color: #aaa;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -75,7 +106,7 @@
         <button onclick="switchLang('en')">EN</button>
     </div>
 
-    <section id="hero" style="text-align: center; background-image: url('hero-background.jpg');">
+    <section id="hero" style="background: url('hero-bg.jpg') center/cover no-repeat;">
         <div class="lang-ru active">
             <h1>GuardPilot: Автономные дроны-охранники 24/7</h1>
             <p>Комплексная защита периметра с ИИ-аналитикой</p>
@@ -90,30 +121,29 @@
 
     <section id="about">
         <h2>О компании</h2>
-        <p>GuardPilot специализируется на создании автономных дрон-систем безопасности для интеграции в умные дома и промышленные объекты. Наши дроны отслеживают нарушителей, маркируют зоны риска и работают в любых условиях.</p>
+        <p>GuardPilot создаёт автономные дроны для охраны объектов — от частных домов до промышленных комплексов. Мы сочетаем ИИ, сенсорику и автономность, чтобы обеспечить непрерывную защиту 24/7.</p>
     </section>
 
     <section id="goal">
         <h2>Наша цель</h2>
         <ul>
-            <li>Превратить дроны в первую линию обороны</li>
-            <li>Снижение ложных срабатываний на 70%</li>
-            <li>Реакция на угрозу за 8.3 секунды</li>
+            <li>Первая линия обороны — дроны</li>
+            <li>Минус 70% ложных тревог</li>
+            <li>Реакция за 8.3 сек</li>
         </ul>
         <p>📍 Москва, Сколково</p>
     </section>
 
     <section id="technology">
         <h2>Технология MVP</h2>
-        <p>[Дрон] → [Обнаружение YOLOv8] → [Тревога в Telegram]</p>
-        <p>↗ (аппаратная часть) [Док-станция]</p>
-        <p>Технологии: OpenCV, PX4, Raspberry Pi, Telegram API</p>
+        <p>[Дрон] → [Обнаружение YOLOv8] → [Telegram Alert]</p>
+        <p>↗ [Док-станция] + OpenCV, PX4, RPi, Telegram API</p>
     </section>
 
     <section id="demo">
         <h2>Демо-видео</h2>
-        <p>Сценарий работы: патрулирование → обнаружение → оповещение → возврат</p>
-        <button onclick="alert('Воспроизведение демо...')">▶️ Смотреть демо</button>
+        <iframe width="90%" height="315" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+        <p>Сценарий: патруль → обнаружение → тревога → возврат</p>
     </section>
 
     <section id="contact">
@@ -121,41 +151,36 @@
         <ul>
             <li>Telegram: <a href="https://t.me/GuardPilot_Support" target="_blank">@GuardPilot_Support</a></li>
             <li>Email: <a href="mailto:security@guardpilot.com">security@guardpilot.com</a></li>
-            <li>Группа в TG: <a href="https://t.me/guardpilot_news" target="_blank">t.me/guardpilot_news</a></li>
+            <li>Новости: <a href="https://t.me/guardpilot_news" target="_blank">t.me/guardpilot_news</a></li>
         </ul>
     </section>
 
     <section id="feedback">
         <h2>Обратная связь</h2>
-        <form>
-            <input type="text" placeholder="Как к вам обращаться?" required><br>
-            <input type="email" placeholder="Ваш корпоративный email" required><br>
-            <textarea placeholder="Размер территории, особые требования"></textarea><br>
-            <button type="submit">Запросить демо-тур 🚁→</button>
-        </form>
+        <div class="glass-card">
+            <form>
+                <input type="text" placeholder="Ваше имя" required><br>
+                <input type="email" placeholder="Email" required><br>
+                <textarea placeholder="Запрос, территория, требования..." required></textarea><br>
+                <button class="futuristic-button" type="submit">Запросить демо 🚁</button>
+            </form>
+        </div>
     </section>
+
+    <footer>
+        <p>© 2025 GuardPilot. Все права защищены.</p>
+        <p>Создано с ♥ для охраны будущего.</p>
+    </footer>
 
     <script>
         function switchLang(lang) {
-            document.querySelectorAll('.lang-ru, .lang-en').forEach(el => {
-                el.classList.remove('active');
-            });
-            document.querySelectorAll(`.lang-${lang}`).forEach(el => {
-                el.classList.add('active');
-            });
+            document.querySelectorAll('.lang-ru, .lang-en').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll(`.lang-${lang}`).forEach(el => el.classList.add('active'));
         }
 
         function openDemoAndScroll() {
-            openDemo();
-            setTimeout(scrollToTech, 500);
-        }
-
-        function openDemo() {
-            alert("Открывается демо...");
-        }
-
-        function scrollToTech() {
-            document.getElementById("technology").scrollIntoView({ behavior: 'smooth' });
+            window.scrollTo({ top: document.getElementById('demo').offsetTop, behavior: 'smooth' });
+            setTimeout(() => alert("Запуск демо"), 800);
         }
     </script>
 </body>
