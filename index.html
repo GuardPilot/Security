@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GuardPilot | Автономные дроны-охранники</title>
   <meta name="description" content="GuardPilot — автономные дроны-охранники с ИИ для круглосуточной охраны объектов.">
-  <meta name="keywords" content="дрон, охрана, безопасность, искусственный интеллект, security drone, AI">
+  <meta name="keywords" content="дрон, охрана, безопасность, ИИ, security drone, AI">
   <meta name="author" content="GuardPilot Team">
   <meta property="og:title" content="GuardPilot — автономные дроны-охранники">
-  <meta property="og:description" content="GuardPilot — ИИ-дроны для защиты объектов 24/7.">
+  <meta property="og:description" content="ИИ-дроны для защиты объектов 24/7.">
   <meta property="og:image" content="image/hero-background.png">
   <meta property="og:url" content="https://guardpilot.github.io/Security/">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="image/logo.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
   <style>
     body {
       margin: 0;
@@ -56,17 +56,6 @@
     .btn-glow:hover {
       box-shadow: 0 0 20px rgba(42, 157, 143, 1);
       transform: scale(1.05);
-    }
-    section {
-      padding: 80px 20px;
-      background-size: cover;
-      background-position: center;
-    }
-    .section-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 40px;
-      text-align: center;
     }
     .glass {
       background: rgba(255,255,255,0.05);
@@ -115,10 +104,91 @@
   </style>
 </head>
 <body>
-  <section class="hero">
-    <h1>Автономные дроны-охранники — ваша безопасность на новом уровне</h1>
-    <p>GuardPilot обнаруживает угрозы, патрулирует и защищает без участия человека. 24/7. AI Inside.</p>
-    <a href="#demo" class="btn btn-glow">🚁 Смотреть демо</a>
+  <div class="scroll-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">↑</div>
+  <section class="hero" id="hero">
+    <div class="lang-switch">
+      <button onclick="switchLang()" class="btn btn-sm btn-outline-light" id="langBtn">EN</button>
+    </div>
+    <h1 data-lang-ru="Автономные дроны-охранники — ваша безопасность на новом уровне"
+        data-lang-en="Autonomous Security Drones — Your Safety Elevated">Автономные дроны-охранники — ваша безопасность на новом уровне</h1>
+    <p data-lang-ru="GuardPilot обнаруживает угрозы, патрулирует и защищает без участия человека. 24/7. AI Inside."
+       data-lang-en="GuardPilot detects threats, patrols, and protects 24/7 without human intervention. AI Inside.">GuardPilot обнаруживает угрозы, патрулирует и защищает без участия человека. 24/7. AI Inside.</p>
+    <a href="#demo" class="btn btn-glow me-2">🚁 <span data-lang-ru="Смотреть демо" data-lang-en="Watch Demo">Смотреть демо</span></a>
+    <a href="#contact" class="btn btn-outline-light"><span data-lang-ru="Связаться" data-lang-en="Contact">Связаться</span></a>
   </section>
+
+  <section id="mvp" class="glass container my-5" data-aos="fade-up">
+    <h2 class="section-title text-center" data-lang-ru="MVP Технологии" data-lang-en="MVP Technologies">MVP Технологии</h2>
+    <ul class="list-unstyled fs-5">
+      <li><i class="bi bi-cpu mvp-icon"></i> <span data-lang-ru="ИИ-распознавание на базе YOLOv8" data-lang-en="AI recognition via YOLOv8">ИИ-распознавание на базе YOLOv8</span></li>
+      <li><i class="bi bi-drone mvp-icon"></i> <span data-lang-ru="Навигация с автопилотом PX4" data-lang-en="Autopilot PX4 navigation">Навигация с автопилотом PX4</span></li>
+      <li><i class="bi bi-camera-video mvp-icon"></i> <span data-lang-ru="Видеоаналитика через OpenCV" data-lang-en="Video analytics via OpenCV">Видеоаналитика через OpenCV</span></li>
+      <li><i class="bi bi-cloud-check mvp-icon"></i> <span data-lang-ru="Интеграция Telegram и облачные уведомления" data-lang-en="Cloud alerts and Telegram integration">Интеграция Telegram и облачные уведомления</span></li>
+    </ul>
+  </section>
+
+  <section id="demo" class="glass container my-5 text-center" data-aos="fade-up">
+    <h2 class="section-title" data-lang-ru="Демонстрация" data-lang-en="Demo">Демонстрация</h2>
+    <div class="ratio ratio-16x9">
+      <iframe src="https://www.youtube.com/embed/k3gPSqs8bLs?autoplay=1&mute=1" title="GuardPilot Demo" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <section id="benefits" class="glass container my-5" data-aos="fade-up">
+    <h2 class="section-title text-center" data-lang-ru="Преимущества" data-lang-en="Benefits">Преимущества</h2>
+    <ul class="benefit-list fs-5">
+      <li>🚀 <span data-lang-ru="Мгновенное реагирование на угрозы" data-lang-en="Instant threat response">Мгновенное реагирование на угрозы</span></li>
+      <li>🔐 <span data-lang-ru="Круглосуточный мониторинг и запись" data-lang-en="24/7 monitoring and recording">Круглосуточный мониторинг и запись</span></li>
+      <li>📱 <span data-lang-ru="Управление через мобильное приложение" data-lang-en="Mobile app control">Управление через мобильное приложение</span></li>
+      <li>🌐 <span data-lang-ru="Облачная интеграция и Telegram-уведомления" data-lang-en="Cloud & Telegram alerts">Облачная интеграция и Telegram-уведомления</span></li>
+    </ul>
+  </section>
+
+  <section id="contact" class="glass container my-5" data-aos="fade-up">
+    <h2 class="section-title text-center" data-lang-ru="Контакты" data-lang-en="Contact">Контакты</h2>
+    <form id="contactForm">
+      <input type="text" class="form-control mb-3" id="name" placeholder="Ваше имя" required>
+      <input type="email" class="form-control mb-3" id="email" placeholder="Email" required>
+      <textarea class="form-control mb-3" id="message" rows="4" placeholder="Сообщение" required></textarea>
+      <button type="submit" class="btn btn-primary w-100"><span data-lang-ru="Отправить" data-lang-en="Send">Отправить</span></button>
+      <div id="form-status" class="text-success mt-2"></div>
+    </form>
+  </section>
+
+  <footer>
+    <img src="image/logo.png" alt="GuardPilot Logo">
+    <p>© 2025 GuardPilot</p>
+    <p>Email: <a href="mailto:2025pilot.guard@gmail.com">2025pilot.guard@gmail.com</a> | Telegram: <a href="https://t.me/+S0gA-bTBQI4wODcy" target="_blank">@JV_Guard</a></p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    function switchLang() {
+      const currentLang = document.documentElement.getAttribute('data-lang');
+      const newLang = currentLang === 'ru' ? 'en' : 'ru';
+      document.documentElement.setAttribute('data-lang', newLang);
+      document.getElementById('langBtn').textContent = newLang === 'ru' ? 'EN' : 'RU';
+      document.querySelectorAll('[data-lang-ru]').forEach(el => {
+        el.textContent = el.getAttribute(`data-lang-${newLang}`);
+      });
+    }
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      document.getElementById('form-status').innerText = "✅ Сообщение отправлено!";
+      setTimeout(() => document.getElementById('form-status').innerText = "", 5000);
+      const mailto = `mailto:2025pilot.guard@gmail.com?subject=Сообщение от ${name}&body=Email: ${email}%0D%0A${message}`;
+      window.location.href = mailto;
+    });
+
+    window.addEventListener('scroll', () => {
+      document.querySelector('.scroll-to-top').style.display = window.scrollY > 300 ? 'flex' : 'none';
+    });
+  </script>
 </body>
 </html>
