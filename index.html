@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GuardPilot | Автономные дроны-охранники</title>
+
+  <!-- SEO Meta -->
   <meta name="description" content="GuardPilot — автономные дроны-охранники с ИИ для круглосуточной охраны объектов.">
   <meta name="keywords" content="дрон, охрана, безопасность, искусственный интеллект, security drone, AI">
   <meta name="author" content="GuardPilot Team">
@@ -13,71 +15,167 @@
   <meta property="og:url" content="https://guardpilot.github.io/Security/">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Schema.org -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "GuardPilot",
-    "url": "https://guardpilot.github.io/Security/",
-    "logo": "https://guardpilot.github.io/Security/image/logo.png",
-    "sameAs": ["https://t.me/+S0gA-bTBQI4wODcy"],
-    "description": "GuardPilot — автономные дроны-охранники с ИИ для круглосуточной охраны объектов."
-  }
-  </script>
-
+  <!-- Manifest and Icons -->
+  <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="image/logo.png" type="image/png">
+
+  <!-- Fonts and Libraries -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <style>body{margin:0;font-family:'Montserrat',sans-serif;background:#081C3A;color:#fff}h1,h2,h3{font-weight:700}.hero{min-height:100vh;background:url('image/hero-background.png') center/cover no-repeat;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px}.btn-glow{background:#2A9D8F;color:white;border:none;box-shadow:0 0 10px rgba(42,157,143,.8)}.glass{background:rgba(255,255,255,.05);backdrop-filter:blur(8px);border-radius:16px;padding:60px}.scroll-to-top{position:fixed;bottom:20px;right:20px;background:#2A9D8F;color:#fff;border:none;border-radius:50%;width:50px;height:50px;display:none;justify-content:center;align-items:center;font-size:20px;z-index:999}@media(max-width:768px){.hero h1{font-size:1.8rem}.hero p{font-size:1rem}}</style>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom right, #081C3A, #0A2463);
+      color: #fff;
+      scroll-behavior: smooth;
+    }
+    section {
+      padding: 80px 20px;
+    }
+    .glass {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      backdrop-filter: blur(8px);
+      padding: 60px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.3);
+    }
+    .hero {
+      background: url('image/hero-background.png') center/cover no-repeat;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(0,255,255,0.5);
+    }
+    .btn-glow {
+      background: #2A9D8F;
+      color: white;
+      box-shadow: 0 0 10px rgba(42, 157, 143, 0.8);
+    }
+    .btn-glow:hover {
+      box-shadow: 0 0 20px rgba(42, 157, 143, 1);
+      transform: scale(1.05);
+    }
+    canvas {
+      width: 100%;
+      height: 500px;
+      display: block;
+      margin: auto;
+    }
+  </style>
 </head>
 <body>
-  <section class="hero">
-    <h1>Автономные дроны-охранники</h1>
-    <p>GuardPilot обнаруживает угрозы, патрулирует и защищает без участия человека. 24/7. AI Inside.</p>
-    <a href="#demo" class="btn btn-glow">🚁 Смотреть демо</a>
+
+  <section class="hero" id="hero">
+    <h1>GuardPilot: Autonomous Security Reimagined</h1>
+    <p>AI drones patrol, detect threats and protect — 24/7.</p>
+    <a href="#" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#aboutModal">About</a>
+    <a href="#demo" class="btn btn-glow me-2">🚁 Watch Demo</a>
+    <a href="#contact" class="btn btn-outline-light">Contact</a>
   </section>
-  <section id="demo" class="glass">
-    <h2>Демонстрация</h2>
-    <div class="ratio ratio-16x9">
-      <iframe src="https://www.youtube.com/embed/k3gPSqs8bLs?autoplay=1&mute=1" allowfullscreen></iframe>
+
+  <section id="mvp" style="background-image: url('image/mvp-background.png');" data-aos="fade-up">
+    <div class="container glass">
+      <h2 class="text-center mb-4">MVP Features</h2>
+      <ul class="list-unstyled">
+        <li><i class="bi bi-cpu me-2 text-info"></i> AI object detection (YOLOv8)</li>
+        <li><i class="bi bi-drone me-2 text-info"></i> PX4 Autopilot navigation</li>
+        <li><i class="bi bi-camera-video me-2 text-info"></i> Video analytics (OpenCV)</li>
+        <li><i class="bi bi-cloud-check me-2 text-info"></i> Cloud and Telegram alerts</li>
+      </ul>
     </div>
-    <canvas id="droneCanvas" style="width:100%; height:500px; background:#000; margin-top:40px;"></canvas>
   </section>
-  <footer class="text-center text-muted p-4">
-    <p>© 2025 GuardPilot | <a href="mailto:2025pilot.guard@gmail.com">2025pilot.guard@gmail.com</a></p>
+
+  <section id="demo" style="background-image: url('image/demo-background.png');" data-aos="fade-up">
+    <div class="container glass text-center">
+      <h2 class="mb-4">Demo</h2>
+      <div class="ratio ratio-16x9 mb-4">
+        <iframe src="https://www.youtube.com/embed/k3gPSqs8bLs?autoplay=1&mute=1" allowfullscreen></iframe>
+      </div>
+      <h3 class="mb-4">3D Drone Preview</h3>
+      <canvas id="drone-canvas"></canvas>
+    </div>
+  </section>
+
+  <section id="contact" style="background-image: url('image/contact-background.png');" data-aos="fade-up">
+    <div class="container glass">
+      <h2 class="text-center mb-4">Contact</h2>
+      <form id="contactForm">
+        <input type="text" class="form-control mb-3" id="name" placeholder="Your Name" required>
+        <input type="email" class="form-control mb-3" id="email" placeholder="Email" required>
+        <textarea class="form-control mb-3" id="message" rows="4" placeholder="Message" required></textarea>
+        <button type="submit" class="btn btn-primary w-100">Send</button>
+        <div id="form-status" class="text-success mt-2"></div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="text-center p-4" style="background:#000B1F;">
+    <img src="image/logo.png" alt="Logo" style="width:60px;"><br>
+    <p>© 2025 GuardPilot | <a href="mailto:2025pilot.guard@gmail.com">Email</a> | <a href="https://t.me/+S0gA-bTBQI4wODcy" target="_blank">Telegram</a></p>
   </footer>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.150.0/build/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.150.0/examples/js/loaders/GLTFLoader.js"></script>
-  <script>
-    AOS.init();
-    const canvas = document.getElementById("droneCanvas");
-    const renderer = new THREE.WebGLRenderer({canvas, antialias: true});
-    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+
+  <div class="modal fade" id="aboutModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-white" style="background: #081C3A; border: 2px solid #2A9D8F;">
+        <div class="modal-header border-0">
+          <h5 class="modal-title">About GuardPilot</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>GuardPilot is the next-generation perimeter security solution. Our AI-powered drones autonomously patrol, detect threats, and send real-time alerts to owners or security personnel via Telegram and cloud systems.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+    import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/loaders/GLTFLoader.js';
+    const canvas = document.getElementById('drone-canvas');
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth/canvas.clientHeight, 0.1, 1000);
-    camera.position.set(0, 1.5, 3);
+    const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
     const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(5,5,5);
+    light.position.set(2, 2, 2);
     scene.add(light);
-    const ambient = new THREE.AmbientLight(0x404040, 1.5);
+    const ambient = new THREE.AmbientLight(0x404040);
     scene.add(ambient);
-    const loader = new THREE.GLTFLoader();
-    loader.load("drone.glb", gltf => {
+    const loader = new GLTFLoader();
+    loader.load('assets/drone.glb', (gltf) => {
       const model = gltf.scene;
+      model.scale.set(2, 2, 2);
       model.rotation.y = Math.PI;
       scene.add(model);
       animate();
+      function animate() {
+        requestAnimationFrame(animate);
+        model.rotation.y += 0.005;
+        renderer.render(scene, camera);
+      }
     });
-    function animate() {
-      requestAnimationFrame(animate);
-      scene.rotation.y += 0.005;
-      renderer.render(scene, camera);
-    }
+    camera.position.z = 5;
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('form-status').innerText = "✅ Message sent!";
+      setTimeout(() => document.getElementById('form-status').innerText = "", 5000);
+    });
   </script>
 </body>
 </html>
