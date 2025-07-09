@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -12,31 +11,27 @@
     <meta property="og:image" content="image/hero-background.png">
     <meta property="og:url" content="https://guardpilot.github.io/Security/">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" type="image/x-icon" href="image/favicon.ico">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "GuardPilot",
+        "url": "https://guardpilot.github.io/Security/",
+        "logo": "https://guardpilot.github.io/Security/image/favicon.png",
+        "contactPoint": [{
+          "@type": "ContactPoint",
+          "email": "2025pilot.guard@gmail.com",
+          "contactType": "customer support"
+        }],
+        "sameAs": ["https://t.me/+S0gA-bTBQI4wODcy"]
+      }
+    </script>
+    <link rel="icon" type="image/png" href="image/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Rubik&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "GuardPilot",
-      "url": "https://guardpilot.github.io/Security",
-      "logo": "https://guardpilot.github.io/Security/image/favicon.ico",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "email": "security@guardpilot.com",
-        "contactType": "customer support",
-        "availableLanguage": ["Russian", "English"]
-      },
-      "sameAs": [
-        "https://t.me/GuardPilot_Support",
-        "https://t.me/guardpilot_news"
-      ]
-    }
-    </script>
     <style>
         h1, h2 {
             opacity: 0;
@@ -55,19 +50,44 @@
             padding: 40px;
             border-radius: 12px;
             margin-top: 60px;
+            position: relative;
+        }
+        .contact-form::before {
+            content: '';
+            background: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 12px;
+            z-index: 0;
+        }
+        .contact-form * {
+            position: relative;
+            z-index: 1;
         }
         .contact-form input,
         .contact-form textarea {
             background-color: #12263A;
             border: none;
             color: #fff;
+            transition: all 0.3s ease;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border: 1px solid #2A9D8F;
+            box-shadow: 0 0 5px rgba(42, 157, 143, 0.6);
+            outline: none;
         }
         .contact-form button {
             background-color: #2A9D8F;
             color: white;
+            transition: all 0.3s ease;
+        }
+        .contact-form button:hover {
+            background-color: #21867a;
+            transform: scale(1.05);
         }
         body.light-theme {
-            background-color: #F8F9FA;
+            background-color: #D0EFFF;
             color: #212529;
         }
         body.light-theme .contact-form {
@@ -87,19 +107,35 @@
             top: 10px;
             right: 10px;
         }
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            z-index: 1000;
+        }
+        footer {
+            background-color: #0A2463;
+            color: white;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        footer img {
+            max-width: 100px;
+        }
     </style>
 </head>
 <body>
     <button class="btn btn-sm btn-secondary theme-toggle">Сменить тему</button>
+    <button class="btn btn-info scroll-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">Наверх</button>
 
     <section class="container text-center py-5" style="background: url('image/hero-background.png') center/cover no-repeat; color: white">
         <h1 class="display-4 mb-3">GuardPilot — автономные дроны-охранники</h1>
         <p class="lead">AI-дроны, которые патрулируют объекты и реагируют на угрозы 24/7.</p>
         <a href="#contact" class="btn btn-primary me-2">Запросить демо</a>
-        <a href="#" class="btn btn-outline-light">Узнать больше</a>
+        <a href="https://t.me/+S0gA-bTBQI4wODcy" class="btn btn-outline-light">Telegram</a>
     </section>
 
-    <!-- Contact Form -->
     <section id="contact" class="container contact-form">
         <h2 class="text-center mb-4">Связаться с нами</h2>
         <form id="contactForm">
@@ -120,8 +156,15 @@
         <div id="form-status" class="mt-3 text-success"></div>
     </section>
 
+    <footer class="text-center">
+        <div class="container">
+            <img src="image/favicon.png" alt="GuardPilot Logo">
+            <p class="mt-2">© 2025 GuardPilot. Все права защищены.</p>
+            <p>Email: 2025pilot.guard@gmail.com | Telegram: @JV_Guard</p>
+        </div>
+    </footer>
+
 <script>
-    // GSAP Scroll animations
     gsap.registerPlugin(ScrollTrigger);
     gsap.utils.toArray("section").forEach(section => {
         gsap.from(section, {
@@ -136,37 +179,26 @@
         });
     });
 
-    // Theme toggle
+    gsap.from("h1", { opacity: 0, y: -30, duration: 1.2 });
+    gsap.from(".lead", { opacity: 0, y: 20, duration: 1, delay: 0.3 });
+
+    window.addEventListener('scroll', () => {
+        const scrollBtn = document.querySelector('.scroll-to-top');
+        scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+
     document.querySelector('.theme-toggle').addEventListener('click', () => {
         document.body.classList.toggle('light-theme');
     });
 
-    // Contact form handler
     document.getElementById('contactForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const message = document.getElementById('message').value;
 
-        const telegramApi = `https://api.telegram.org/botYOUR_BOT_TOKEN/sendMessage`;
-        const chatId = 'YOUR_CHAT_ID';
-        const text = `Новое сообщение:\nИмя: ${name}\nEmail: ${email}\nСообщение: ${message}`;
-
-        fetch(telegramApi, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: chatId, text: text })
-        })
-        .then(response => {
-            if (response.ok) {
-                document.getElementById('form-status').innerText = 'Сообщение отправлено!';
-                document.getElementById('contactForm').reset();
-            } else {
-                document.getElementById('form-status').innerText = 'Ошибка отправки.';
-            }
-        });
-
-        console.log(`Email отправка: ${name}, ${email}, ${message}`);
+        const mailto = `mailto:2025pilot.guard@gmail.com?subject=Сообщение от ${name}&body=Email: ${email}%0D%0AСообщение:%0D%0A${message}`;
+        window.location.href = mailto;
     });
 </script>
 </body>
