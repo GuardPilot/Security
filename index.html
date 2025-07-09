@@ -1,242 +1,173 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GuardPilot | Автономные дроны-охранники</title>
+    <meta name="description" content="GuardPilot — автономные дроны-охранники с ИИ для периметровой защиты объектов. Оповещения в Telegram, YOLOv8, PX4 и OpenCV внутри.">
+    <meta name="keywords" content="дрон, охрана, безопасность, искусственный интеллект, patrol drone, security">
+    <meta name="author" content="GuardPilot Team">
+    <meta property="og:title" content="GuardPilot — автономные дроны-охранники">
+    <meta property="og:description" content="GuardPilot — ИИ-дроны для круглосуточной охраны и безопасности объектов.">
+    <meta property="og:image" content="image/hero-background.png">
+    <meta property="og:url" content="https://guardpilot.github.io/Security/">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/x-icon" href="image/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Rubik&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "GuardPilot",
+      "url": "https://guardpilot.github.io/Security",
+      "logo": "https://guardpilot.github.io/Security/image/favicon.ico",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "security@guardpilot.com",
+        "contactType": "customer support",
+        "availableLanguage": ["Russian", "English"]
+      },
+      "sameAs": [
+        "https://t.me/GuardPilot_Support",
+        "https://t.me/guardpilot_news"
+      ]
+    }
+    </script>
     <style>
-        :root {
-            --bg-dark: #020c1b;
-            --bg-light: #f5f7fa;
-            --text-dark: #fff;
-            --text-light: #0A2463;
+        h1, h2 {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s ease-out forwards;
         }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: var(--bg-dark);
-            color: var(--text-dark);
-            overflow-x: hidden;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        .light-mode {
-            background: var(--bg-light);
-            color: var(--text-light);
-        }
-
-        .lang-toggle, .theme-toggle {
-            position: fixed;
-            top: 20px;
-            z-index: 999;
-        }
-
-        .lang-toggle {
-            right: 100px;
-        }
-
-        .theme-toggle {
-            right: 20px;
-        }
-
-        .lang-toggle button, .theme-toggle button {
-            background-color: #61E8E1;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-left: 5px;
-        }
-
-        .lang-ru, .lang-en {
-            display: none;
-        }
-
-        .lang-ru.active, .lang-en.active {
-            display: block;
-        }
-
-        section {
-            padding: 80px 20px;
-            text-align: center;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            transform: translateZ(0);
-            will-change: transform;
-        }
-
-        .futuristic-button {
-            margin: 10px;
-            padding: 14px 28px;
-            font-size: 1rem;
-            font-weight: bold;
-            background: linear-gradient(90deg, #61E8E1, #2ec8c2);
-            border: 2px solid #61E8E1;
-            color: #0A2463;
-            border-radius: 12px;
-            cursor: pointer;
-            box-shadow: 0 0 12px #61E8E1;
-            transition: all 0.3s ease;
-        }
-
-        .futuristic-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px #61E8E1;
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        input, textarea {
-            width: 90%;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 8px;
-            border: none;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            background: #000;
-            color: #aaa;
-            font-size: 0.9rem;
-        }
-
-        @media screen and (max-width: 768px) {
-            h1 {
-                font-size: 1.6rem;
-            }
-            h2 {
-                font-size: 1.3rem;
-            }
-            p, li {
-                font-size: 1rem;
-            }
-            .futuristic-button {
-                width: 90%;
-                padding: 12px;
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
-
-        .modal-custom {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-        }
-
-        .modal-content-custom {
-            position: relative;
-            margin: 10% auto;
-            padding: 20px;
-            width: 90%;
-            max-width: 720px;
-            background: #111;
-            border-radius: 10px;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
+        .contact-form {
+            background: url('image/contact-background.png') no-repeat center center/cover;
             color: #fff;
-            font-size: 24px;
-            cursor: pointer;
+            padding: 40px;
+            border-radius: 12px;
+            margin-top: 60px;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            background-color: #12263A;
+            border: none;
+            color: #fff;
+        }
+        .contact-form button {
+            background-color: #2A9D8F;
+            color: white;
+        }
+        body.light-theme {
+            background-color: #F8F9FA;
+            color: #212529;
+        }
+        body.light-theme .contact-form {
+            background-color: #fff;
+            color: #212529;
+        }
+        body.light-theme .contact-form input,
+        body.light-theme .contact-form textarea {
+            background-color: #e9ecef;
+            color: #212529;
+        }
+        body.light-theme .contact-form button {
+            background-color: #0A2463;
+        }
+        .theme-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
         }
     </style>
 </head>
-
 <body>
-    <div class="lang-toggle">
-        <button onclick="switchLang('ru')">RU</button>
-        <button onclick="switchLang('en')">EN</button>
-    </div>
-    <div class="theme-toggle">
-        <button onclick="toggleTheme()">🌗 Тема</button>
-    </div>
+    <button class="btn btn-sm btn-secondary theme-toggle">Сменить тему</button>
 
-    <!-- Example Demo Section -->
-    <section id="demo" style="background-image: url('image/demo-background.png');">
-        <h2>Демо-видео</h2>
-        <button class="futuristic-button" onclick="openCustomModal()">▶️ Смотреть демо</button>
+    <section class="container text-center py-5" style="background: url('image/hero-background.png') center/cover no-repeat; color: white">
+        <h1 class="display-4 mb-3">GuardPilot — автономные дроны-охранники</h1>
+        <p class="lead">AI-дроны, которые патрулируют объекты и реагируют на угрозы 24/7.</p>
+        <a href="#contact" class="btn btn-primary me-2">Запросить демо</a>
+        <a href="#" class="btn btn-outline-light">Узнать больше</a>
     </section>
 
-    <!-- Modal for Demo Video -->
-    <div id="demoModal" class="modal-custom">
-        <div class="modal-content-custom">
-            <span class="modal-close" onclick="closeCustomModal()">&times;</span>
-            <iframe width="100%" height="400" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </div>
+    <!-- Contact Form -->
+    <section id="contact" class="container contact-form">
+        <h2 class="text-center mb-4">Связаться с нами</h2>
+        <form id="contactForm">
+            <div class="mb-3">
+                <label for="name" class="form-label">Ваше имя</label>
+                <input type="text" class="form-control" id="name" placeholder="Введите имя" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Введите email" required>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Сообщение</label>
+                <textarea class="form-control" id="message" rows="4" placeholder="Ваше сообщение..." required></textarea>
+            </div>
+            <button type="submit" class="btn">Отправить</button>
+        </form>
+        <div id="form-status" class="mt-3 text-success"></div>
+    </section>
 
-    <footer>
-        <p>© 2025 GuardPilot. Все права защищены.</p>
-        <p>Создано с ♥ для охраны будущего.</p>
-    </footer>
+<script>
+    // GSAP Scroll animations
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray("section").forEach(section => {
+        gsap.from(section, {
+            scrollTrigger: {
+                trigger: section,
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: 40,
+            opacity: 0,
+            duration: 1
+        });
+    });
 
-    <script>
-        function switchLang(lang) {
-            document.querySelectorAll('.lang-ru, .lang-en').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll(`.lang-${lang}`).forEach(el => el.classList.add('active'));
-        }
+    // Theme toggle
+    document.querySelector('.theme-toggle').addEventListener('click', () => {
+        document.body.classList.toggle('light-theme');
+    });
 
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-        }
+    // Contact form handler
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
 
-        function openDemoAndScroll() {
-            document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
-            setTimeout(() => alert("Запуск демо"), 800);
-        }
+        const telegramApi = `https://api.telegram.org/botYOUR_BOT_TOKEN/sendMessage`;
+        const chatId = 'YOUR_CHAT_ID';
+        const text = `Новое сообщение:\nИмя: ${name}\nEmail: ${email}\nСообщение: ${message}`;
 
-        function scrollToSpecs() {
-            document.getElementById('technology').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function handleDoubleAction() {
-            openDemoAndScroll();
-            setTimeout(scrollToSpecs, 2000);
-        }
-
-        ScrollReveal().reveal('section', {
-            delay: 100,
-            distance: '40px',
-            duration: 900,
-            easing: 'ease-in-out',
-            origin: 'bottom'
+        fetch(telegramApi, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: chatId, text: text })
+        })
+        .then(response => {
+            if (response.ok) {
+                document.getElementById('form-status').innerText = 'Сообщение отправлено!';
+                document.getElementById('contactForm').reset();
+            } else {
+                document.getElementById('form-status').innerText = 'Ошибка отправки.';
+            }
         });
 
-        // Custom Modal
-        function openCustomModal() {
-            document.getElementById('demoModal').style.display = 'block';
-        }
-
-        function closeCustomModal() {
-            document.getElementById('demoModal').style.display = 'none';
-        }
-    </script>
+        console.log(`Email отправка: ${name}, ${email}, ${message}`);
+    });
+</script>
 </body>
-
 </html>
