@@ -1,50 +1,59 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GuardPilot | Автономные дроны-охранники</title>
-
-  <!-- SEO & Schema.org -->
   <meta name="description" content="GuardPilot — автономные дроны-охранники с ИИ для круглосуточной охраны объектов.">
   <meta name="keywords" content="дрон, охрана, безопасность, искусственный интеллект, security drone, AI">
   <meta name="author" content="GuardPilot Team">
-  <meta property="og:title" content="GuardPilot — автономные дроны-охранники">
-  <meta property="og:description" content="GuardPilot — ИИ-дроны для защиты объектов 24/7.">
-  <meta property="og:image" content="image/hero-background.png">
-  <meta property="og:url" content="https://guardpilot.github.io/Security/">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- Schema.org JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "GuardPilot",
-    "url": "https://guardpilot.github.io/Security/",
-    "logo": "https://guardpilot.github.io/Security/image/logo.png",
-    "sameAs": ["https://t.me/+S0gA-bTBQI4wODcy"],
-    "description": "GuardPilot — автономные дроны-охранники с ИИ для круглосуточной охраны объектов."
-  }
-  </script>
-
-  <link rel="icon" href="image/logo.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="image/logo.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <style>
-    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Montserrat', sans-serif;
       margin: 0;
-      background: #081C3A;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom right, #081C3A, #0A2463);
       color: #fff;
+      scroll-behavior: smooth;
     }
-    .section {
+    .hero {
+      background: url('image/hero-background.png') center/cover no-repeat;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(0,255,255,0.5);
+    }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+    .btn-glow {
+      background: #2A9D8F;
+      color: white;
+      border: none;
+      box-shadow: 0 0 10px rgba(42, 157, 143, 0.8);
+      transition: all 0.3s ease;
+    }
+    .btn-glow:hover {
+      box-shadow: 0 0 20px rgba(42, 157, 143, 1);
+      transform: scale(1.05);
+    }
+    section {
       padding: 80px 20px;
-      background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
     }
@@ -53,122 +62,135 @@
       border-radius: 16px;
       backdrop-filter: blur(8px);
       padding: 60px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.3);
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .icon-list i {
+      color: #2A9D8F;
+      margin-right: 10px;
+    }
+    footer {
+      background: #000B1F;
+      color: #ccc;
+      text-align: center;
+      padding: 40px 20px;
     }
     .scroll-to-top {
       position: fixed;
       bottom: 20px;
       right: 20px;
       background: #2A9D8F;
+      color: #fff;
+      border: none;
       border-radius: 50%;
       width: 50px;
       height: 50px;
       display: none;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       font-size: 20px;
       z-index: 999;
-      color: white;
-      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.7rem; }
+      .hero p { font-size: 1rem; }
+      .hero .btn { display: block; width: 100%; margin: 10px 0; }
+      .glass { padding: 30px 20px; }
+      .section-title { font-size: 1.5rem; }
     }
   </style>
 </head>
 <body>
-  <!-- Hero Section -->
-  <section id="hero" class="section text-center" style="background-image: url('image/hero-background.jpg');">
-    <div class="container">
-      <h1 class="lang lang-ru">Добро пожаловать в GuardPilot</h1>
-      <h1 class="lang lang-en d-none">Welcome to GuardPilot</h1>
-      <p class="lang lang-ru">Автономные дроны для вашей безопасности</p>
-      <p class="lang lang-en d-none">Autonomous drones for your safety</p>
-    </div>
+  <button class="scroll-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">↑</button>
+
+  <section class="hero" id="hero">
+    <h1>Автономные дроны-охранники</h1>
+    <p>Искусственный интеллект, круглосуточное патрулирование, мгновенное оповещение.</p>
+    <a href="#demo" class="btn btn-glow">🚁 Смотреть демо</a>
+    <a href="#contact" class="btn btn-outline-light">Связаться</a>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="section" style="background-image: url('image/about-background.jpg');">
+  <section style="background-image: url('image/mvp-background.png');" data-aos="fade-up">
     <div class="container glass">
-      <h2 class="text-center lang lang-ru">О компании</h2>
-      <h2 class="text-center lang lang-en d-none">About Us</h2>
-      <p class="lang lang-ru">GuardPilot — это инновационная система дронов с ИИ для автономной охраны объектов.</p>
-      <p class="lang lang-en d-none">GuardPilot is an innovative drone system with AI for autonomous property protection.</p>
-    </div>
-  </section>
-
-  <!-- Demo Section -->
-  <section id="demo" class="section text-center" style="background-image: url('image/demo-background.jpg');">
-    <div class="container glass">
-      <h2 class="lang lang-ru">Демонстрация</h2>
-      <h2 class="lang lang-en d-none">Demo</h2>
-      <div class="ratio ratio-16x9 mb-4">
-        <iframe src="https://www.youtube.com/embed/k3gPSqs8bLs" title="GuardPilot Demo" allowfullscreen></iframe>
-      </div>
-      <canvas id="droneCanvas" width="600" height="400"></canvas>
-    </div>
-  </section>
-
-  <!-- MVP Section -->
-  <section id="mvp" class="section" style="background-image: url('image/mvp-background.jpg');">
-    <div class="container glass">
-      <h2 class="text-center mb-4 lang lang-ru">Преимущества MVP</h2>
-      <h2 class="text-center mb-4 lang lang-en d-none">MVP Advantages</h2>
-      <ul class="list-unstyled">
-        <li><i class="bi bi-cpu text-info me-2"></i><span class="lang lang-ru">ИИ-распознавание объектов</span><span class="lang lang-en d-none">AI Object Recognition</span></li>
-        <li><i class="bi bi-geo text-info me-2"></i><span class="lang lang-ru">Автономное патрулирование</span><span class="lang lang-en d-none">Autonomous Patrolling</span></li>
-        <li><i class="bi bi-bell text-info me-2"></i><span class="lang lang-ru">Мгновенные уведомления</span><span class="lang lang-en d-none">Instant Alerts</span></li>
-        <li><i class="bi bi-telegram text-info me-2"></i><span class="lang lang-ru">Интеграция с Telegram</span><span class="lang lang-en d-none">Telegram Integration</span></li>
+      <h2 class="section-title">MVP Технологии</h2>
+      <ul class="icon-list">
+        <li><i class="fas fa-brain"></i>ИИ-распознавание на базе YOLOv8</li>
+        <li><i class="fas fa-route"></i>Автопилот PX4 и навигация</li>
+        <li><i class="fas fa-video"></i>Видеоаналитика через OpenCV</li>
+        <li><i class="fas fa-bell"></i>Интеграция Telegram и облачные уведомления</li>
       </ul>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="section" style="background-image: url('image/contact-background.jpg');">
+  <section style="background-image: url('image/goals-background.png');" data-aos="fade-up">
     <div class="container glass">
-      <h2 class="text-center lang lang-ru">Контакты</h2>
-      <h2 class="text-center lang lang-en d-none">Contact</h2>
-      <form id="contact-form">
+      <h2 class="section-title">Преимущества</h2>
+      <ul class="icon-list">
+        <li><i class="fas fa-shield-alt"></i>Повышенная безопасность без участия человека</li>
+        <li><i class="fas fa-bolt"></i>Мгновенное реагирование на угрозы</li>
+        <li><i class="fas fa-mobile-alt"></i>Управление через мобильное приложение</li>
+        <li><i class="fas fa-globe"></i>Работа в любых условиях и локациях</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="demo" style="background-image: url('image/demo-background.png');" data-aos="fade-up">
+    <div class="container glass text-center">
+      <h2 class="section-title">Демонстрация</h2>
+      <div class="ratio ratio-16x9">
+        <iframe src="https://www.youtube.com/embed/k3gPSqs8bLs?autoplay=1&mute=1" title="GuardPilot Demo" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="background-image: url('image/contact-background.png');" data-aos="fade-up">
+    <div class="container glass">
+      <h2 class="section-title">Контакты</h2>
+      <form id="contactForm">
         <div class="mb-3">
-          <input type="text" class="form-control" name="name" placeholder="Ваше имя / Your Name" required>
+          <input type="text" class="form-control" id="name" placeholder="Ваше имя" required>
         </div>
         <div class="mb-3">
-          <input type="email" class="form-control" name="email" placeholder="Email" required>
+          <input type="email" class="form-control" id="email" placeholder="Email" required pattern="[^@ 	
+]+@[^@ 	
+]+\.[^@ 	
+]+">
         </div>
         <div class="mb-3">
-          <textarea class="form-control" name="message" rows="4" placeholder="Сообщение / Message" required></textarea>
+          <textarea class="form-control" id="message" rows="4" placeholder="Сообщение" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary w-100">Отправить / Send</button>
-        <div id="form-status" class="mt-3"></div>
+        <button type="submit" class="btn btn-primary w-100">Отправить</button>
+        <div id="form-status" class="text-success mt-2"></div>
       </form>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="text-center py-4" style="background-color: #000A1A; color: #ccc;">
-    <img src="image/logo.png" alt="GuardPilot logo" style="width: 60px;">
-    <p class="mt-2 mb-0">© 2025 GuardPilot</p>
-    <p>Email: <a href="mailto:2025pilot.guard@gmail.com" class="text-light">2025pilot.guard@gmail.com</a></p>
-    <p>Telegram: <a href="https://t.me/+S0gA-bTBQI4wODcy" class="text-light" target="_blank">@JV_Guard</a></p>
+  <footer>
+    <img src="image/logo.png" alt="GuardPilot Logo">
+    <p>© 2025 GuardPilot. Все права защищены.</p>
+    <p>Email: <a href="mailto:2025pilot.guard@gmail.com">2025pilot.guard@gmail.com</a> | Telegram: <a href="https://t.me/+S0gA-bTBQI4wODcy" target="_blank">@JV_Guard</a></p>
   </footer>
 
-  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
   <script>
     AOS.init();
-    emailjs.init("user_YOUR_API_KEY_HERE");
-    const form = document.getElementById('contact-form');
-    const status = document.getElementById('form-status');
-    if (form) {
-      form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        emailjs.sendForm('your_service_id', 'your_template_id', this)
-          .then(() => {
-            status.textContent = "Сообщение отправлено! / Message sent!";
-            form.reset();
-          }, () => {
-            status.textContent = "Ошибка отправки / Error sending";
-          });
-      });
-    }
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('form-status').innerText = "✅ Сообщение отправлено!";
+      setTimeout(() => {
+        document.getElementById('form-status').innerText = "";
+        document.getElementById('contactForm').reset();
+      }, 4000);
+    });
+    window.addEventListener('scroll', () => {
+      document.querySelector('.scroll-to-top').style.display = window.scrollY > 300 ? 'flex' : 'none';
+    });
   </script>
 </body>
 </html>
